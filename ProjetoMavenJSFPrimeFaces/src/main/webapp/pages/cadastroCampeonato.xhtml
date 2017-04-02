@@ -1,0 +1,61 @@
+<ui:composition template="templateMenu.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui2="http://java.sun.com/jsf/facelets"
+	xmlns:tm="http://java.sun.com/jsf/composite/terminal/1_0/components">
+	
+	<ui:define name="title">
+		<h:outputText value="#{msg['pages.cadastroCampeonato.title']}" />
+	</ui:define>
+	
+	<ui:define name="principal">
+	  
+	<h1><p:outputLabel value="#{msg['pages.cadastroCampeonato.menu']}"/></h1>
+	  
+	<h:form id="formCampeonato">	
+		<p:panelGrid columns="2">
+	    	<p:outputLabel value="#{msg['pages.cadastroCampeonato.nome']}" />
+	    	<p:inputText value="#{campeonatoManagedBean.campeonato.nomeCampeonato}"/>
+			<p:outputLabel value="#{msg['pages.cadastroCampeonato.ano']}" />
+	    	<p:inputText value="#{campeonatoManagedBean.campeonato.anoCampeonato}"/>
+	    	<p:outputLabel value="#{msg['pages.cadastroCampeonato.inicio']}" />
+	    	<p:inputText value="#{campeonatoManagedBean.campeonato.dataInicioCampeonato}"/>
+	    	<p:outputLabel value="#{msg['pages.cadastroCampeonato.fim']}" />
+	    	<p:inputText value="#{campeonatoManagedBean.campeonato.dataFimCampeonato}"/>
+		</p:panelGrid>
+		
+		<p:commandButton value="#{msg['pages.cadastroCampeonato.btnSalvar']}" 
+	                 action="#{campeonatoManagedBean.salvar}"
+	                 update=":formCampeonato, :tabelaCampeonato"
+	                 />
+     </h:form>
+	
+   	    <p:dataTable value="#{campeonatoManagedBean.campeonatos}"
+                var="aux"
+                id="tabelaCampeonato"
+       			>
+      			<p:column headerText="#{msg['pages.cadastroCampeonato.nome']}">
+        			<p:outputLabel value="#{aux.nomeCampeonato}" />
+      			</p:column>
+      			<p:column headerText="#{msg['pages.cadastroCampeonato.ano']}">
+			       	<p:outputLabel value="#{aux.anoCampeonato}" />
+			    </p:column>
+			    <p:column headerText="#{msg['pages.cadastroCampeonato.inicio']}">
+			        <p:outputLabel value="#{aux.dataInicioCampeonato}" />
+			    </p:column>
+			    <p:column headerText="#{msg['pages.cadastroCampeonato.fim']}">
+			        <p:outputLabel value="#{aux.dataFimCampeonato}" />
+			    </p:column>
+   		</p:dataTable>	
+   		
+	</ui:define>
+</ui:composition>
+
+
+
+
+
+
